@@ -21,24 +21,62 @@ const App = () => {
 
     const [selected, setSelected] = useState(0)
     const [votes, setVotes] = useState(new Uint8Array(8))
+    const [mostUpvotedIndex,setMostUpvotedIndex] = useState(-1)
     console.log(votes)
     const selectRandomAnecdote = () => {
         setSelected(Math.floor(Math.random() * anecdotes.length))
     }
+
+    const findMostUpvotedIndex = () => {
+        let largest = 0
+        let largestIndex = -1
+        // trying to find the index of the largest number in the array votes
+        for (let i=0; i<8; i++) {
+            if (votes[i] > largest) {
+                console.log('index', i, 'is larger')
+                largest = votes[i]
+                largestIndex = i
+                console.log(largestIndex)
+            }
+        }
+        console.log(largestIndex)
+        setMostUpvotedIndex(largestIndex)
+        }
     const updateVotes = (selected, votes) => {
         const newVotes = { ...votes }
         console.log(newVotes)
         newVotes[selected] += 1
         setVotes(newVotes)
+        findMostUpvotedIndex()
+        console.log('most upvoted anecdote index is: ', mostUpvotedIndex)
+    }
+    if (mostUpvotedIndex === -1) {
+        return (
+            <div>
+                <h1>Anecdote of the Day</h1>
+                <Button text='Vote' onClick={() => updateVotes(selected, votes)}></Button>
+                <Button text='Random Anecdote' onClick={selectRandomAnecdote}></Button>
+                <br/>
+                This one has {votes[selected]} votes<br/>
+                {anecdotes[selected]}
+                <h1>Anecdote with the most votes</h1>
+                <p>No votes recorded yet</p>
+            </div>
+        )
     }
 
     return (
         <div>
+            <h1>Anecdote of the Day</h1>
             <Button text='Vote' onClick={() => updateVotes(selected, votes)}></Button>
             <Button text='Random Anecdote' onClick={selectRandomAnecdote}></Button>
-            {votes[selected]} <br/>
+            <br/>
+            This one has {votes[selected]} votes<br/>
             {anecdotes[selected]}
+            <h1>Anecdote with the most votes</h1>
+            <p>{anecdotes[mostUpvotedIndex]}</p>
         </div>
+
     )
 }
 
