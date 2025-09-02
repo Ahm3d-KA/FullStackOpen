@@ -1,3 +1,5 @@
+import {jasmine} from "globals";
+
 const Header = (props) => {
     console.log(props)
     return (
@@ -30,9 +32,16 @@ const Content = ({parts}) => {
 
     )
 }
-const Total = (props) => {
+const Total = ({parts}) => {
+    let sum = 0;
+    parts.forEach((part) =>
+        sum = sum + part.exercises
+    )
     return (
-        <p>Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
+        <>
+            <p><b>Number of exercises {sum}</b></p>
+            {/*<p>Number of exercises {parts[0].exercises + parts[1].exercises + parts[2].exercises}</p>*/}
+        </>
 
     )
 }
@@ -64,6 +73,11 @@ const App = () => {
                 name: 'State of a component',
                 exercises: 14,
                 id: 3
+            },
+            {
+                name: 'State of a component',
+                exercises: 14,
+                id: 4
             }
         ]
     }
