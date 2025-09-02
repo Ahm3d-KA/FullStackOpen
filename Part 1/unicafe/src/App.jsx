@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import {use, useState} from 'react'
+
+
 
 const Button = ({ text, onClick }) => {
     return (
@@ -10,21 +12,42 @@ const App = () => {
     const [good, setGood] = useState(0)
     const [neutral, setNeutral] = useState(0)
     const [bad, setBad] = useState(0)
+    const [total, setTotal] = useState(0)
+    const [average, setAverage] = useState(0)
+    const [percentOfPosFeedback, setPercentOfPosFeedback] = useState(0)
     const handleGood = () => {
         const updatedGood = good +1
         setGood(updatedGood)
+
+        const updatedTotal = updatedGood + neutral + bad
+        setTotal(updatedTotal)
+
+        setPercentOfPosFeedback((updatedGood/updatedTotal)*100)
+        setAverage((updatedGood - bad)/updatedTotal)
         console.log("Good is now: ", updatedGood)
 
     }
     const handleNeutral = () => {
         const updatedNeutral = neutral +1
         setNeutral(updatedNeutral)
+
+        const updatedTotal = good + updatedNeutral + bad
+        setTotal(updatedTotal)
+
+        setPercentOfPosFeedback((good/updatedTotal)*100)
+        setAverage((good - bad)/updatedTotal)
         console.log("Neutral is now: ", updatedNeutral)
 
     }
     const handleBad = () => {
         const updatedBad = bad +1
         setBad(updatedBad)
+
+        const updatedTotal = good + neutral + updatedBad
+        setTotal(updatedTotal)
+
+        setPercentOfPosFeedback((good/updatedTotal)*100)
+        setAverage((good - updatedBad)/updatedTotal)
         console.log("Bad is now: ", updatedBad)
 
     }
@@ -39,6 +62,9 @@ const App = () => {
             <p>Good: {good}</p>
             <p>Neutral: {neutral}</p>
             <p>Bad: {bad}</p>
+            <p>Total: {total}</p>
+            <p>Average: {average}</p>
+            <p>positive: {percentOfPosFeedback} %</p>
         </div>
     )
 }
