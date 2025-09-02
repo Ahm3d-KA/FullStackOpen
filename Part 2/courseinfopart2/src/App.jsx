@@ -33,13 +33,14 @@ const Content = ({parts}) => {
     )
 }
 const Total = ({parts}) => {
-    let sum = 0;
-    parts.forEach((part) =>
-        sum = sum + part.exercises
-    )
+    const total =
+        parts.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.exercises,
+            0,
+            )
     return (
         <>
-            <p><b>Number of exercises {sum}</b></p>
+            <p><b>Number of exercises {total}</b></p>
             {/*<p>Number of exercises {parts[0].exercises + parts[1].exercises + parts[2].exercises}</p>*/}
         </>
 
