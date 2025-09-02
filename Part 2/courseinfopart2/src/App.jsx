@@ -1,5 +1,3 @@
-
-
 const Header = (props) => {
     console.log(props)
     return (
@@ -26,10 +24,6 @@ const Content = ({parts}) => {
                 <Part part={part.name} exercises={part.exercises} key={part.id} />
             )}
 
-            {/*<Part part={parts[0].name} exercises={parts[0].exercises} />*/}
-            {/*<Part part={parts[1].name} exercises={parts[1].exercises} />*/}
-            {/*<Part part={parts[2].name} exercises={parts[2].exercises} />*/}
-
         </>
 
     )
@@ -43,7 +37,6 @@ const Total = ({parts}) => {
     return (
         <>
             <p><b>Number of exercises {total}</b></p>
-            {/*<p>Number of exercises {parts[0].exercises + parts[1].exercises + parts[2].exercises}</p>*/}
         </>
 
     )
@@ -58,13 +51,11 @@ const Course = ({course, parts}) => {
         )
 }
 const Courses = ({courses}) => {
-    // courses.forEach((course) => console.log(course.id))
     return (
         <>
             {courses.map((course) =>
-                <>
                     <Course key={course.id} course={course.name} parts={course.parts} />
-                </>
+
             )}
         </>
 
@@ -119,9 +110,6 @@ const App = () => {
 
     return (
         <div>
-            {/*<Header course={course.name} />*/}
-            {/*<Content parts={course.parts} />*/}
-            {/*<Total parts={course.parts} />*/}
             <Courses courses={courses} />
         </div>
     )
