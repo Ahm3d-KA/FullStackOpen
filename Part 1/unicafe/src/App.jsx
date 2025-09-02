@@ -4,12 +4,14 @@ import {use, useState} from 'react'
 const StatisticLine = ({ text, value }) => {
     return (
         <>
-            <p>{text}: {value}</p>
+        <td><p>{text} </p> </td>
+        <td><p>{value}</p></td>
         </>
     )
 }
     const Statistics = ({ good, neutral, bad, total, average, positive}) => {
     console.log(good, neutral, bad)
+        console.log('average is', average)
     if (good === 0 && neutral === 0 && bad === 0) {
         return (
             <>
@@ -21,12 +23,23 @@ const StatisticLine = ({ text, value }) => {
     return (
         <>
             <h1>Statistics</h1>
-            <StatisticLine text='Good' value={good}></StatisticLine>
-            <StatisticLine text='Neutral' value={neutral}></StatisticLine>
-            <StatisticLine text='Bad' value={bad}></StatisticLine>
-            <StatisticLine text='Total' value={total}></StatisticLine>
-            <StatisticLine text='Average' value={average}></StatisticLine>
-            <StatisticLine text='Positive' value={positive}></StatisticLine>
+            <table>
+                <tbody>
+                    <tr>
+                        <StatisticLine text='Good' value={good}></StatisticLine>
+                    </tr>
+                    <tr><StatisticLine text='Neutral' value={neutral}></StatisticLine>
+                        </tr>
+                    <tr><StatisticLine text='Bad' value={bad}></StatisticLine>
+                        </tr>
+                    <tr><StatisticLine text='Total' value={total}></StatisticLine>
+                        </tr>
+                    <tr><StatisticLine text='Average' value={average}></StatisticLine>
+                        </tr>
+                    <tr><StatisticLine text='Positive' value={positive}></StatisticLine>
+                    </tr>
+                </tbody>
+            </table>
 
         </>
     )
