@@ -45,6 +45,22 @@ const App = () => {
                     id: 2
                 }
             ]
+        },
+        {
+            name: 'Node.js',
+            id: 2,
+            parts: [
+                {
+                    name: 'Routing',
+                    exercises: 3,
+                    id: 1
+                },
+                {
+                    name: 'Middlewares',
+                    exercises: 10,
+                    id: 2
+                }
+            ]
         }
     ]
 
