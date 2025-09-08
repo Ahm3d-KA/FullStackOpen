@@ -1,0 +1,24 @@
+ title Process of adding an new note
+
+participant Browser
+participant Server
+
+Browser->Server:Post user input to https://studies.cs.helsinki.fi/exampleapp/new_note
+
+Browser<--Server:HTTP status code 302 - URL redirect to https://studies.cs.helsinki.fi/exampleapp/notes
+
+Browser-->Server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+
+Browser<--Server: HTML document
+
+Browser-->Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+
+Browser<--Server: the css file
+
+Browser-->Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+
+Browser<--Server: the Javascript file - browser starts executing JS code
+
+Browser-->Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+Browser<--Server: [["content": "HTML is easy", "date": "05/12/2025"], ...] - browser renders notes
